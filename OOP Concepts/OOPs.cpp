@@ -93,11 +93,13 @@ class Car2 {
     public:
         string name;
         string color;
+        int *mileage;
 
     // Parameterized Constructor
     Car2(string name, string color){
         this->name = name;
         this->color = color;
+        mileage = new int(12);   //Dynamic Allocation
     }
 
     // Custom Copy Constructor
@@ -105,6 +107,19 @@ class Car2 {
         cout << "copying original to new...\n";
         name = original.name;
         color = original.color;
+        // mileage = original.mileage;   // copies memory address (shallow copy)
+
+        mileage = new int;               // reallocates memory (deep copy)
+        *mileage = *original.mileage;    
+    }
+
+    // Custom Destructor -> Explicitly deallocate dynamic memory
+    ~Car2() {
+        cout << "Deleting object...\n";
+        if(mileage != nullptr){
+            delete mileage;
+            mileage = nullptr;
+        }
     }
 };
 
@@ -158,7 +173,20 @@ int main(){
 */
 
 
-    // Shallow Copy & Deep Copy
+    // Shallow Copy & Deep Copy/ Destructor
+    Car2 c1("MG Hector", "Dual");
+
+    Car2 c2(c1);
+    cout << c2.color << endl;
+    cout << c2.name << endl;
+
+    *c2.mileage = 10;    // Shallow Copy
+    cout << *c1.mileage << endl; 
+    cout << *c2.mileage << endl;   // Deep Copy
+
+    
+    
+
 
 
 
