@@ -157,7 +157,7 @@ int main(){
     // Practice Que:
     User user1(101);
     user1.username = "_priyanka_j";
-    user1.setPassword("priyaroy");
+    user1.setPassword("priya");
 
     cout << "Username: " << user1.username << endl;
     cout << "Password: " << user1.getPassword() << endl;
