@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-// check odd or Even
+// Que: check odd or Even
 void oddOrEven(int num){
     if((num & 1))
         cout << "Odd number\n";
@@ -25,6 +25,9 @@ int setIthBit(int num, int i){
         return (num | bitMask);
 }
 
+// Clear ith Bit
+
+
 int main(){
     //Bitwise Operators
     // cout << (3&5) << endl;
@@ -32,6 +35,7 @@ int main(){
     // cout << (3&7) << endl;
     // cout << (3|8) << endl;
     // cout << ~6 << endl;
+
 
     //Bitwise Shift Operators
     // cout << (7<<2) << endl;  //(28) a<<b => a*2^b
@@ -41,6 +45,7 @@ int main(){
     // cout << (~4) << endl;
     // cout << (8>>2) << endl;
     // cout << (8>>1) << endl;
+
 
     //Que: Check if no. Odd/Even
     // oddOrEven(5);
@@ -54,10 +59,9 @@ int main(){
     // cout << getIthBit(num, 2) << endl;
     
     // Set ith Bit
-    cout << setIthBit(6, 3) << endl;  // Decimal No: 14
-    cout << setIthBit(7, 3) << endl;  
+    // cout << setIthBit(6, 3) << endl;  // Decimal No: 14
+    // cout << setIthBit(7, 3) << endl;  
      
-
     // Clear ith Bit
 
 
