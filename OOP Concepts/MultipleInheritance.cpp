@@ -9,7 +9,7 @@ protected:
 
 public:
     void inputPersonalDetails() {
-        cout << "Enter name : ";
+        cout << "Enter name : "; 
         getline(cin, name);
         cout << "Enter age : ";
         cin >> age;

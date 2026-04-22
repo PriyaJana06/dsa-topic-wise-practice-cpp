@@ -54,7 +54,7 @@ int main(){
     // oddOrEven(-8);
 
 
-    // Get ith Bit
+    // Get ith Bit 
     // int num = 7 ;
     // cout << getIthBit(num, 2) << endl;
     

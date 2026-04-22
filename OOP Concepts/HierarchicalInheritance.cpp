@@ -9,7 +9,7 @@ public:
     void setNumber(int num) {
         this->num = num;
     }
-};
+}; 
 
 class Square : public Number {
 public:

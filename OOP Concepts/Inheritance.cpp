@@ -122,7 +122,7 @@ int main(){
 
     // Single Inheritance
     // Fish f1;
-    // f1.fins = 3;
+    // f1.fins = 3; 
     // cout << "Number of fins: " << f1.fins << endl;
     // f1.swim();
     // f1.breathe();
