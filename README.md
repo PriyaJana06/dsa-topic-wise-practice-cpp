@@ -5,6 +5,10 @@ This repository will contain my topic-wise implementations of Data Structures an
 
 ## Topics Covered
 - Arrays
+- Bit Manipulation
+- OOP Concepts
+- Strings
+- Sorting Algorithms
 
 This repository is continuously expanding as new concepts and problems are added.
 This repository will be organized into multiple folders, each containing various programs related to OOP and DSA.
