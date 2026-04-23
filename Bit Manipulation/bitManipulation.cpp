@@ -1,14 +1,6 @@
 #include<iostream>
 using namespace std;
 
-// Que: check odd or Even
-void oddOrEven(int num){
-    if((num & 1))
-        cout << "Odd number\n";
-    else
-        cout << "Even number\n";
-}
-
 // get ith bit
 int getIthBit(int num, int i){
     int bitMask = 1 << i;
@@ -26,6 +18,23 @@ int setIthBit(int num, int i){
 }
 
 // Clear ith Bit
+int clearIthBit(int num, int i){
+    int bitMask = ~(1 << i);
+    return num & bitMask;
+}
+
+// Que: Update ith Bit according to value(0 or 1)
+int updateIthBit(int num, int i, int val){
+    num = num & ~(1 << i);   // clear ith Bit
+    num = num | (val << i);
+    return num;
+}
+
+// Que: Clear last i Bits of a number
+int clearLastIBits(int num, int i){
+    int bitMask = (~0) << i;
+    return num & bitMask;
+}
 
 
 int main(){
@@ -47,13 +56,6 @@ int main(){
     // cout << (8>>1) << endl;
 
 
-    //Que: Check if no. Odd/Even
-    // oddOrEven(5);
-    // oddOrEven(24);
-    // oddOrEven(-7);
-    // oddOrEven(-8);
-
-
     // Get ith Bit 
     // int num = 7 ;
     // cout << getIthBit(num, 2) << endl;
@@ -63,9 +65,15 @@ int main(){
     // cout << setIthBit(7, 3) << endl;  
      
     // Clear ith Bit
-    
+    // cout << clearIthBit(6, 1) << endl;
 
 
+    //Que: Update ith bit according to given value(0 or 1)
+    // cout << updateIthBit(7, 3, 1) << endl;
+
+    // Que: Clear last i bits of a number
+    // cout << clearLastIBits(15, 2) << endl;
+    // cout << clearLastIBits(16, 4) << endl; 
 
 
     return 0;
