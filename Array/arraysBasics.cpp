@@ -46,8 +46,6 @@ void reverseArray2(int *arr, int n){
     }
 }
 
-
-
 void printArrPointer(int *ptr, int n){
     for(int i=0; i<n; i++){
         cout << *(ptr+i) << " ";
@@ -204,7 +202,7 @@ int main(){
     // cout << q - p << "\n";
 
 
-    // Comparison (== < <= > >=)
+    // Comparison: (== < <= > >=)
     // cout << (p < q) << "\n";
     // cout << (p > q) << "\n";
     // cout << (arr1==p) << "\n";
