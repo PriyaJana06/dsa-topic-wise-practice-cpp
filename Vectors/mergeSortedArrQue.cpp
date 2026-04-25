@@ -9,6 +9,7 @@ vector<int> sortedSquares(vector<int>& nums){
     vector<int> pos;
     vector<int> neg;
 
+    // Segregate negative & positive elements
     for(int i=0; i<size; i++){
         if(nums[i] >= 0)
             pos.push_back(nums[i]);
@@ -16,12 +17,14 @@ vector<int> sortedSquares(vector<int>& nums){
             neg.push_back(nums[i]);
     }
 
+    // Only Positive array
     if(neg.size() == 0){
         for(int i=0; i<pos.size(); i++)
             pos[i] = pos[i] * pos[i];
         return pos;
     }
 
+    // Only Negative Array
     if(pos.size() == 0){
         for(int i=0; i<neg.size(); i++){
             neg[i] = neg[i] * neg[i];
@@ -61,7 +64,6 @@ vector<int> sortedSquares(vector<int>& nums){
     while(j<m){
         res[idx++] = pos[j++];
     }
-
     return res;
 }
 
@@ -98,13 +100,14 @@ int main(){
     cout << "Merged 2 Sorted Array: ";
     for(int i=0; i<result.size(); i++){
         cout << result[i] << " ";
-    }
+    } cout << "\n";
+
 
 // Que:
-
     // Square of a Sorted Array: Merge two Sorted Array & Two Pointers Approach
     vector<int> nums = {-4, -1, 0, 3, 10};
     
+    cout << "Square of Sorted Array: ";
     vector<int> ans = sortedSquares(nums);
     for(int i=0; i<nums.size(); i++){
         cout << ans[i] << " ";
