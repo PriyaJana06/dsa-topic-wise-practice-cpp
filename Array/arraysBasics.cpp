@@ -19,15 +19,6 @@ void printArr(int nums[], int n){
     } cout << endl;
 }
 
-// LINEAR SEARCH:
-int linearSearch(int *arr, int n, int key){
-    for(int i=0; i<n; i++){
-        if(arr[i] == key){
-            return i; 
-        }
-    }
-    return -1;
-}
 
 // Reverse An Array: using extra space
 void reverseArray(int *arr, int n){
@@ -55,21 +46,7 @@ void reverseArray2(int *arr, int n){
     }
 }
 
-// Binary Search:
-int binarySearch(int *arr, int n, int key){
-    int start = 0, end = n-1;
-    while(start<=end){
-        int mid = (start + end)/2;
-        if(arr[mid] < key){   // 2nd half
-            start = mid+1;   
-        } else if(arr[mid]> key){  // 1st half
-            end = mid-1;
-        } else { 
-            return mid;   // Key found
-        }
-    }
-    return -1;
-}
+
 
 void printArrPointer(int *ptr, int n){
     for(int i=0; i<n; i++){
@@ -157,12 +134,6 @@ int main(){
 
 
 
-    // LINEAR SEARCH:
-    // int arr[] = {2, 4, 5, 67, 10, 35, 14, 16, 13};
-    // int n = sizeof(arr)/sizeof(int);
-    // cout << linearSearch(arr, n, 13) << endl;
-
-
     // Reverse an Array:-> using extra space
     // int arr[] = {34, 45, 57, 78, 89, 34, 24, 46, 68};
     // int n = sizeof(arr)/sizeof(int);
@@ -173,9 +144,6 @@ int main(){
     reverseArray2(arr, n);  // SC -> O(1)
     printArr(arr, n);
     */
-
-    // BINARY SEARCH: TC -> O(log N)
-    // cout << "Key Found at index " << binarySearch(arr, n, 34) << endl;
 
 /*
     // Array Pointer:
