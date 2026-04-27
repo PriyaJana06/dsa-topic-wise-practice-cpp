@@ -15,6 +15,7 @@ void inputArr(int *arr, int n){
     }
 }
 
+// Bubble Sort
 void bubbleSort(int *arr, int n){   // TC -> O(n^2) 
     for(int i=0; i<n-1; i++){
         bool isSwap = false;   // Optimisation for already sorted array or no swaps
@@ -33,6 +34,7 @@ void bubbleSort(int *arr, int n){   // TC -> O(n^2)
     }
 }
 
+// Selection Sort
 void selectionSort(int *arr, int n){  // TC -> O(n^2)
     for(int i=0; i<n-1; i++){
         int minIdx = i;   // Index of minimum value
@@ -46,6 +48,7 @@ void selectionSort(int *arr, int n){  // TC -> O(n^2)
     printArr(arr, n);
 }
 
+// Insertion Sort
 void insertionSort(int *arr, int n){  // TC -> O(n^2)
     for(int i=1; i<n; i++){
         int curr = arr[i];
@@ -58,6 +61,7 @@ void insertionSort(int *arr, int n){  // TC -> O(n^2)
     } printArr(arr, n);
 }
 
+// Counting Sort
 void countingSort(int *arr, int n){   // TC -> O(N + range)
     int freq[100000] = {0};
     int minVal = INT_MAX, maxVal = INT_MIN;
