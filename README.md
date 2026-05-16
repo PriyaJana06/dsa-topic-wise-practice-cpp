@@ -5,6 +5,7 @@ This repository will contain my topic-wise implementations of Data Structures an
 
 ## Topics Covered
 - Arrays
+- Vectors
 - Bit Manipulation
 - OOP Concepts
 - Strings
