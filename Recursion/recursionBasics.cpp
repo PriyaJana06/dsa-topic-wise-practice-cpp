@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
 // Factorial
@@ -46,7 +47,19 @@ bool isSorted(int arr[], int n, int i){
     return isSorted(arr, n, i+1);       // Faith
 }
 
+// First occurence of element in vector:
+int firstOccur(vector<int> arr, int target, int i){
+    if(i == arr.size()) return -1;
 
+    if(arr[i] == target) return i;
+
+    return firstOccur(arr, target, i+1);
+}
+
+// Last Occurence:
+int lastOccur(vector<int> arr, int target, int i){
+
+}
 
 int main(){
     
@@ -64,9 +77,16 @@ int main(){
     // cout << fibo(n);
 
     // Check if Array is Sorted:
-    int arr2[] = {1, 3, 5, 2, 5, 8, 2};  // unsorted -> 0
-    int arr[] = {1, 2, 3, 4, 5, 6, 7}; // unsorted -> 0
-    cout << isSorted(arr2, 7, 0);
+    // int arr2[] = {1, 3, 5, 2, 5, 8, 2};  // unsorted -> 0
+    // int arr[] = {1, 2, 3, 4, 5, 6, 7}; // sorted -> 0
+    // cout << isSorted(arr2, 7, 0);
+
+    // First Occurence:
+    vector<int> arr = {1, 2, 3, 4, 4, 3, 5};
+    cout << firstOccur(arr, 4, 0) << endl;
+
+    // Last Occurence:
+    
 
     return 0;
 }
