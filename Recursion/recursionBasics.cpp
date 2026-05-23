@@ -38,9 +38,15 @@ int fibo(int n){
 }
 
 // Check if Array is Sorted:
-bool isSorted(int* arr, int n, int i){
+bool isSorted(int arr[], int n, int i){
+    if(i == n-1) return true;  // BaseCase
 
+    if(arr[i] > arr[i+1]) return false;  // Work
+
+    return isSorted(arr, n, i+1);       // Faith
 }
+
+
 
 int main(){
     
@@ -55,10 +61,12 @@ int main(){
     // cout << sum(n);
 
     // Print Nth Fiboncci Number
-    cout << fibo(n);
+    // cout << fibo(n);
 
     // Check if Array is Sorted:
-    
+    int arr2[] = {1, 3, 5, 2, 5, 8, 2};  // unsorted -> 0
+    int arr[] = {1, 2, 3, 4, 5, 6, 7}; // unsorted -> 0
+    cout << isSorted(arr2, 7, 0);
 
     return 0;
 }
