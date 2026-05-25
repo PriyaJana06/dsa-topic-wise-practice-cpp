@@ -40,7 +40,7 @@ int fibo(int n){
 
 // Check if Array is Sorted:
 bool isSorted(int arr[], int n, int i){
-    if(i == n-1) return true;  // BaseCase
+    if(i == n-1) return true;  // Base Case
 
     if(arr[i] > arr[i+1]) return false;  // Work
 
@@ -49,21 +49,42 @@ bool isSorted(int arr[], int n, int i){
 
 // First occurence of element in vector:
 int firstOccur(vector<int> arr, int target, int i){
-    if(i == arr.size()) return -1;
+    if(i == arr.size()) return -1;   // Base Case
 
-    if(arr[i] == target) return i;
+    if(arr[i] == target) return i;   // Work
 
-    return firstOccur(arr, target, i+1);
+    return firstOccur(arr, target, i+1);   // Inner Function
 }
-
+ 
 // Last Occurence:
 int lastOccur(vector<int> arr, int target, int i){
+    if(i == arr.size()) return -1;   // Base Case
 
+    int idx = lastOccur(arr, target, i+1);     // Inner Function
+     
+    if(idx == -1){               // Work
+        if(arr[i] == target) 
+            return i;
+    }
+    return idx;
+}
+
+// Print x to the pow n:  // TC -> O(log N)
+int pow(int x, int n){
+    if(n == 0) return 1;    // Base Case
+
+    int halfPow = pow(x, n/2);   
+
+    if(n % 2 == 0) {       
+        return halfPow * halfPow;   // even n
+    } else {                            
+        return x * halfPow * halfPow;  // odd n
+    }
 }
 
 int main(){
     
-    int n = 6;
+    // int n = 6;
     // Factorial
     // cout << "Factorial of " << n << ": " << factorial(n) << endl; 
 
@@ -82,11 +103,17 @@ int main(){
     // cout << isSorted(arr2, 7, 0);
 
     // First Occurence:
-    vector<int> arr = {1, 2, 3, 4, 4, 3, 5};
-    cout << firstOccur(arr, 4, 0) << endl;
+    // vector<int> arr = {1, 2, 3, 4, 4, 3, 5};
+    // cout << firstOccur(arr, 4, 0) << endl;
 
     // Last Occurence:
+    // vector<int> arr1 = {1, 2, 3, 4, 4, 3, 5};
+    // cout << lastOccur(arr1, 4, 0) << endl;
     
+    // Print X to the pow N
+    int x = 2;
+    int n = 10;
+    cout << pow(x, n) << endl;
 
     return 0;
 }
