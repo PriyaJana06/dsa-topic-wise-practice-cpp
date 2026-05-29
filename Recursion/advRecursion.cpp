@@ -41,6 +41,11 @@ int friendsPairing(int n){
     return friendsPairing(n-1) + (n-1)*friendsPairing(n-2);
 }
 
+// Binary Strings Problem: Print all Binary Strins of size N without any consecutive 1s.
+void binaryString(int n) {
+    
+}
+
 int main(){
     // Tiling Problem 
     int n = 4;
