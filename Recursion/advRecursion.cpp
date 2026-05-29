@@ -42,13 +42,37 @@ int friendsPairing(int n){
 }
 
 // Binary Strings Problem: Print all Binary Strins of size N without any consecutive 1s.
-void binaryString(int n) {
-    
+// void binaryString(int n, int lastPlace, string ans) {
+//     if(n==0){
+//         cout << ans << " ";
+//         return;
+//     }
+
+//     if(lastPlace != 1){
+//         binaryString(n-1, 0, ans + '0');
+//         binaryString(n-1, 1, ans + '1');
+//     } else {
+//         binaryString(n-1, 0, ans + '0');
+//     }
+// }
+
+void binaryString(int n, string ans) {
+    if(n==0){
+        cout << ans << " ";
+        return;
+    }
+
+    if(ans[ans.size()-1] != '1'){
+        binaryString(n-1, ans + '0');
+        binaryString(n-1, ans + '1');
+    } else {
+        binaryString(n-1, ans + '0');
+    }
 }
 
 int main(){
     // Tiling Problem 
-    int n = 4;
+    int n = 3;
     cout << "No. of ways tiles(2 x 1) can be placed on floor(2 x "<< n << "): " << tilingProblem(n) << endl;
 
     // Remove Duplicates in String:
@@ -60,6 +84,9 @@ int main(){
     // Friends Pairing Problem:
     cout << "Number of total ways for pairing " << n << " friends: " << friendsPairing(n) << endl;
 
+    // Binary String Problem: Print all binary strings of size n without any consecutive 1's.
+    cout << "Binary Strings are: ";
+    binaryString(n, ans);
 
     return 0;
 }
