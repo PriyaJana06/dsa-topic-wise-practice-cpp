@@ -33,9 +33,17 @@ void removeDuplicates(string str, string ans, int i, bool visited[26]){
     }
 }
 
+// Friends Pairing Problem: Find Total ways in which n friends can be paired up.
+// Each friend can only be paired once.
+int friendsPairing(int n){
+    if(n == 1 || n == 2) return n;
+    
+    return friendsPairing(n-1) + (n-1)*friendsPairing(n-2);
+}
+
 int main(){
     // Tiling Problem 
-    int n = 5;
+    int n = 4;
     cout << "No. of ways tiles(2 x 1) can be placed on floor(2 x "<< n << "): " << tilingProblem(n) << endl;
 
     // Remove Duplicates in String:
@@ -43,6 +51,9 @@ int main(){
     string ans = "";
     bool visited[26] = {false};
     removeDuplicates(str, ans, 0, visited);
+
+    // Friends Pairing Problem:
+    cout << "Number of total ways for pairing " << n << " friends: " << friendsPairing(n) << endl;
 
 
     return 0;
