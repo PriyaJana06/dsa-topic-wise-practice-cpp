@@ -10,6 +10,7 @@ This repository will contain my topic-wise implementations of Data Structures an
 - OOP Concepts
 - Strings
 - Recursion
+- Backtracking
 - Sorting Algorithms
 
 This repository is continuously expanding as new concepts and problems are added.
