@@ -13,11 +13,13 @@ public:
     }
 
     ~Node(){
+        cout << "~Node\n";
         if(next != nullptr){
+            cout << "Node Destructor for data = " << data << endl; 
             delete next;
             next = nullptr;
         }
-        cout << "Node deleted\n";
+        cout << "Node deleted data = " << data << "\n";
     }
 };
 
@@ -32,6 +34,7 @@ public:
     }
 
     ~List(){
+        cout << "~List\n";
         if(head != nullptr){
             delete head;
             head = nullptr;
@@ -109,7 +112,7 @@ int main(){
 
     // Insert in Middle of ll:
     ll.insert(100, 2);
-    ll.printList();
+    ll.printList(); 
 
     return 0;
 }
