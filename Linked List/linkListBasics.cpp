@@ -12,15 +12,15 @@ public:
         next = nullptr;
     }
 
-    ~Node(){
-        cout << "~Node\n";
-        if(next != nullptr){
-            cout << "Node Destructor for data = " << data << endl; 
-            delete next;
-            next = nullptr;
-        }
-        cout << "Node deleted data = " << data << "\n";
-    }
+    // ~Node(){
+    //     cout << "~Node\n";
+    //     if(next != nullptr){
+    //         cout << "Node Destructor for data = " << data << endl; 
+    //         delete next;
+    //         next = nullptr;
+    //     }
+    //     cout << "Node deleted data = " << data << "\n";
+    // }
 };
 
 class List {
@@ -33,16 +33,16 @@ public:
         tail = nullptr;
     }
 
-    ~List(){
-        cout << "~List\n";
-        if(head != nullptr){
-            delete head;
-            head = nullptr;
-        }
-        cout << "Linked List deleted\n";
-    }
+    // ~List(){
+    //     cout << "~List\n";
+    //     if(head != nullptr){
+    //         delete head;
+    //         head = nullptr;
+    //     }
+    //     cout << "Linked List deleted\n";
+    // }
 
-    // push_front():
+    // push_front(): TC -> O(1)
     void push_front(int val){
         Node* newNode = new Node(val);
 
@@ -54,7 +54,7 @@ public:
         }
     }
 
-    // push_back():
+    // push_back(): TC -> O(1)
     void push_back(int val){
         Node* newNode = new Node(val);
 
@@ -66,7 +66,7 @@ public:
         }
     }
 
-    // Print Linked List:
+    // Print Linked List: TC -> O(N)
     void printList(){
         Node* temp = head;
 
@@ -81,7 +81,15 @@ public:
 
     // Insert in middle of LL:
     void insert(int val, int pos){
-        Node* newNode = new Node(val);
+        // Insert at beginning:
+        if(pos == 0){
+            Node* newNode = new Node(val);
+            newNode->next = head;
+            head = newNode;
+
+            if(tail == nullptr) tail = newNode;
+            return;
+        }
 
         Node* prev = head;
         for(int i = 0; i<pos-1; i++){
@@ -91,8 +99,65 @@ public:
             }
             prev = prev->next;
         }
+
+        if(prev == nullptr){
+            cout << "Invalid Position\n";
+            return;
+        }
+
+        Node* newNode = new Node(val);
+
         newNode->next = prev->next;
         prev->next = newNode;
+
+        if(newNode->next == nullptr){
+            tail = newNode;
+        }
+    }
+
+    // pop_front():
+    void pop_front(){
+        if(head == nullptr){
+            cout << "Linked List is EMPTY\n";
+            return;
+        } 
+
+        Node* temp = head;
+        head = head->next;
+
+        // if list became empty
+        if(head == nullptr){
+            tail = nullptr;
+        }
+        temp->next = nullptr;
+        delete temp;
+        
+
+        
+    }
+
+    //pop_back():  TC -> O(N)
+    void pop_back(){
+        
+        if(head == nullptr){   // empty list
+            cout << "Linked List is EMPTY\n";
+            return;
+        }
+
+        // Single Node
+        if(head == tail){
+            delete head;
+            head = tail = nullptr;
+            return;
+        }
+        
+        Node* temp = head;
+        while(temp->next->next != nullptr){
+            temp = temp->next;
+        }
+        temp->next = nullptr;
+        delete tail;
+        tail = temp;
     }
 };
 
@@ -113,6 +178,14 @@ int main(){
     // Insert in Middle of ll:
     ll.insert(100, 2);
     ll.printList(); 
+
+    // pop_front(): 2->100->3->4->5->Null
+    ll.pop_front();
+    ll.printList();
+
+    // pop_back(): 2 -> 100 -> 3 -> 4 -> NULL
+    ll.pop_back();
+    ll.printList();
 
     return 0;
 }
