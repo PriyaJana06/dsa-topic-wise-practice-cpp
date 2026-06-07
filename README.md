@@ -12,6 +12,7 @@ This repository will contain my topic-wise implementations of Data Structures an
 - Recursion
 - Backtracking
 - Sorting Algorithms
+- Linked List
 
 This repository is continuously expanding as new concepts and problems are added.
 This repository will be organized into multiple folders, each containing various programs related to OOP and DSA.
