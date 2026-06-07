@@ -131,9 +131,6 @@ public:
         }
         temp->next = nullptr;
         delete temp;
-        
-
-        
     }
 
     //pop_back():  TC -> O(N)
@@ -159,6 +156,21 @@ public:
         delete tail;
         tail = temp;
     }
+
+    // Iterative Search: TC -> O(N)
+    int searchItr(int key){
+        Node* temp = head;
+        int idx = 0;
+
+        while(temp != nullptr){
+            if(temp->data == key){
+                return idx;
+            }
+            temp = temp->next;
+            idx++;
+        }
+        return -1;
+    }
 };
 
 int main(){
@@ -180,12 +192,16 @@ int main(){
     ll.printList(); 
 
     // pop_front(): 2->100->3->4->5->Null
-    ll.pop_front();
-    ll.printList();
+    // ll.pop_front();
+    // ll.printList();
 
     // pop_back(): 2 -> 100 -> 3 -> 4 -> NULL
-    ll.pop_back();
-    ll.printList();
+    // ll.pop_back();
+    // ll.printList();
+
+    // Iterative Search:
+    int key = 100;
+    cout << "Idx of Key " << key << ": " <<ll.searchItr(key) << endl;
 
     return 0;
 }
