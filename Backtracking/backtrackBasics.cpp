@@ -34,6 +34,20 @@ void printSubsets(string str, string subset){
     printSubsets(str.substr(1, str.size()-1), subset);    // exclude
 }
 
+// Find & Print all permutations:
+void findPermutations(string str, string ans){
+    if(str.size() == 0){
+            cout << ans << "\n";
+            return;
+        }
+
+    for(int i=0; i<str.size(); i++){
+        char ch = str[i];
+        // "abcdefgh", i=2 => "ab" + "defgh" => str.substr(0, i) + str.substr(i+1, str.size()-i-1);
+        string nextStr = str.substr(0, i) + str.substr(i+1, str.size()-i-1);
+        findPermutations(nextStr , ans + ch);     // ith char choice to add in permutation
+    }
+}
 
 int main() {
     int arr[5] = {0};
@@ -44,9 +58,15 @@ int main() {
 
 
     // Find Subsets of string:
+    // string str = "abc";
+    // string subset = "";
+    // printSubsets(str, subset);
+
+    // Find Permutations:
     string str = "abc";
-    string subset = "";
-    printSubsets(str, subset);
+    string ans = "";
+
+    findPermutations(str, ans);
  
     return 0;
-} 
+}
