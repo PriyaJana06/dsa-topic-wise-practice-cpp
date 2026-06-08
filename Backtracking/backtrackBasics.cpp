@@ -21,7 +21,7 @@ void changeArr(int arr[], int n, int i){
     arr[i] -= 2;   // Backtrack
 }
 
-// Find Subsets of string:
+// Que: Find Subsets of string:
 void printSubsets(string str, string subset){
     if(str.size() == 0){
         cout << subset << "\n";
@@ -34,7 +34,7 @@ void printSubsets(string str, string subset){
     printSubsets(str.substr(1, str.size()-1), subset);    // exclude
 }
 
-// Find & Print all permutations:
+// Que: Find & Print all permutations:
 void findPermutations(string str, string ans){
     if(str.size() == 0){
             cout << ans << "\n";
@@ -48,6 +48,10 @@ void findPermutations(string str, string ans){
         findPermutations(nextStr , ans + ch);     // ith char choice to add in permutation
     }
 }
+
+// Que: N Queens -> Place N-Queens such that NO 2 queens attack each other.
+
+
 
 int main() {
     int arr[5] = {0};
