@@ -40,7 +40,7 @@ void findPermutations(string str, string ans){
             cout << ans << "\n";
             return;
         }
-
+        
     for(int i=0; i<str.size(); i++){
         char ch = str[i];
         // "abcdefgh", i=2 => "ab" + "defgh" => str.substr(0, i) + str.substr(i+1, str.size()-i-1);
