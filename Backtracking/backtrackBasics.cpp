@@ -50,7 +50,7 @@ void findPermutations(string str, string ans){
 }
 
 // Que: N Queens -> Place N-Queens such that NO 2 queens attack each other.
-void printBoard(vector<vector<char>> board){
+void printBoard(vector<vector<char>>& board){
     int n = board.size();   // size of row
 
     for(int i=0; i<n; i++){
@@ -62,7 +62,7 @@ void printBoard(vector<vector<char>> board){
     cout << "----------------\n";
 }
 
-bool isSafe(vector<vector<char>> board, int row, int col ){
+bool isSafe(vector<vector<char>>& board, int row, int col ){
     int n = board.size();
     // horizontal safety:
     for(int j=0; j<n; j++){
@@ -94,7 +94,7 @@ bool isSafe(vector<vector<char>> board, int row, int col ){
     return true;
 }
 
-int nQueens(vector<vector<char>> board, int row){  // placing ith queen -> ith Row
+int nQueens(vector<vector<char>>& board, int row){  // placing ith queen -> ith Row
     int n = board.size();
 
     if(row == n){
@@ -113,6 +113,24 @@ int nQueens(vector<vector<char>> board, int row){  // placing ith queen -> ith R
     return count;   // no. of possible solutions
 }
 
+
+// Que: Grid Ways:
+int gridWays(int row, int col, int n, int m){
+    if(row == n-1 && col == m-1){   // reached destination
+        return 1;
+    }
+
+    if(row >= n || col >= m){  // Base Case for rows & cols
+        return 0;
+    }
+
+    // right
+    int way1 = gridWays(row, col+1, n, m);
+    // down
+    int way2 = gridWays(row+1, col, n, m);
+
+    return way1+way2;
+}
 
 int main() {
     // int arr[5] = {0};
@@ -135,18 +153,24 @@ int main() {
 
 
     // Que: (IMP) N-Queens:
-    vector<vector<char>> board;
-    int n = 4;
+    // vector<vector<char>> board;
+    // int n = 4;
 
-    for(int i=0; i<n; i++){
-        vector<char> newRow;
-        for(int j=0; j<n; j++){
-            newRow.push_back('.');
-        }
-        board.push_back(newRow);
-    }
+    // for(int i=0; i<n; i++){
+    //     vector<char> newRow;
+    //     for(int j=0; j<n; j++){
+    //         newRow.push_back('.');
+    //     }
+    //     board.push_back(newRow);
+    // }
 
-    int count = nQueens(board, 0);
-    cout << "count: " << count << endl;
+    // int count = nQueens(board, 0);
+    // cout << "count: " << count << endl;
+
+
+    // Grid Ways:
+    int n = 3;
+    int m = 3;
+    cout << "No. of Ways to reach Destination: " << gridWays(0, 0, n, m) << " ways"<< endl;
     return 0;
 }
