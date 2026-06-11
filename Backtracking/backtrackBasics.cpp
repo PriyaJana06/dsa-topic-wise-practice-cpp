@@ -62,7 +62,7 @@ void printBoard(vector<vector<char>>& board){
     cout << "----------------\n";
 }
 
-bool isSafe(vector<vector<char>>& board, int row, int col ){
+bool isSafeQ(vector<vector<char>>& board, int row, int col ){
     int n = board.size();
     // horizontal safety:
     for(int j=0; j<n; j++){
@@ -104,7 +104,7 @@ int nQueens(vector<vector<char>>& board, int row){  // placing ith queen -> ith 
     
     int count = 0;
     for(int j=0; j<n; j++){  // columns
-        if(isSafe(board, row, j)){
+        if(isSafeQ(board, row, j)){
             board[row][j] = 'Q';
             count += nQueens(board, row+1);
             board[row][j] = '.';  // Backtracking
@@ -115,8 +115,9 @@ int nQueens(vector<vector<char>>& board, int row){  // placing ith queen -> ith 
 
 
 // Que: Grid Ways:
-int gridWays(int row, int col, int n, int m){
+int gridWays(int row, int col, int n, int m, string ans){
     if(row == n-1 && col == m-1){   // reached destination
+        cout << ans << "\n"; 
         return 1;
     }
 
@@ -125,11 +126,85 @@ int gridWays(int row, int col, int n, int m){
     }
 
     // right
-    int way1 = gridWays(row, col+1, n, m);
+    int way1 = gridWays(row, col+1, n, m, ans+'R');
     // down
-    int way2 = gridWays(row+1, col, n, m);
+    int way2 = gridWays(row+1, col, n, m, ans+'D');
 
     return way1+way2;
+}
+
+// Que: Sudoku Solver:
+void printSudoku(int sudoku[][9]){
+    for(int i=0; i<9; i++){
+        for(int j=0; j<9; j++){
+            cout << sudoku[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+bool isSafeSudo(int sudoku[][9], int row, int col, int digit){
+    // vertical - col fixed, row = 0 to 8
+    for(int i=0; i<9; i++){
+        if(sudoku[i][col] == digit){
+            return false;
+        }
+    }
+
+    // horizontal - row fixed, col = 0 to 8
+    for(int j=0; j<9; j++){
+        if(sudoku[row][j] == digit){
+            return false;
+        }
+    }
+
+    // 3x3 subgrid - 
+    int startRow = (row/3)*3;
+    int startCol = (col/3)*3;
+
+    for(int i=startRow; i<=startRow + 2; i++){
+        for(int j=startCol; j<=startCol+2; j++){
+            if(sudoku[i][j] == digit){
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+bool sudokuSolver(int sudoku[9][9], int row, int col){
+    // Base Case
+    if(row == 9){
+        // sudoku solved
+        printSudoku(sudoku);
+        return true;
+    }
+
+    int nextRow = row;
+    int nextCol = col + 1;
+
+    if(col + 1 == 9){
+        nextRow = row + 1;
+        nextCol = 0;
+    }
+
+    // exists a number in cell
+    if(sudoku[row][col] != 0){   
+        return sudokuSolver(sudoku, nextRow, nextCol);  // move to next cell
+    }
+
+    // there exists NO number in cell
+    for(int digit=1; digit<=9; digit++){
+        if(isSafeSudo(sudoku, row, col, digit)){
+            sudoku[row][col] = digit;
+            if(sudokuSolver(sudoku, nextRow, nextCol)){
+                return true;
+            }
+            sudoku[row][col] = 0;
+        }
+    }
+    return false;
 }
 
 int main() {
@@ -169,8 +244,23 @@ int main() {
 
 
     // Grid Ways:
-    int n = 3;
-    int m = 3;
-    cout << "No. of Ways to reach Destination: " << gridWays(0, 0, n, m) << " ways"<< endl;
+    // int n = 3;
+    // int m = 3;
+    // string ans = "";
+    // cout << "No. of Ways to reach Destination: " << gridWays(0, 0, n, m, ans) << " ways"<< endl;
+
+    // Sudoku Solver:
+    int sudoku[9][9] = {{0, 0, 8, 0, 0, 0, 0, 0, 0},
+                        {4, 9, 0, 1, 5, 7, 0, 0, 2},
+                        {0, 0, 3, 0, 0, 4, 1, 9, 0},
+                        {1, 8, 5, 0, 6, 0, 0, 2, 0},
+                        {0, 0, 0, 0, 2, 0, 0, 6, 0},
+                        {9, 6, 0, 4, 0, 5, 3, 0, 0},
+                        {0, 3, 0, 0, 7, 2, 0, 0, 4},
+                        {0, 4, 9, 0, 3, 0, 0, 5, 7},
+                        {8, 2, 7, 0, 0, 9, 0, 1, 3}};
+
+    sudokuSolver(sudoku, 0, 0);
+
     return 0;
 }
