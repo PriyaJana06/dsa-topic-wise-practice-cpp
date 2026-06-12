@@ -59,7 +59,7 @@ bool sudokuSolver(int sudoku[9][9], int row, int col){
 
     // exists a number in cell
     if(sudoku[row][col] != 0){   
-        return sudokuSolver(sudoku, nextRow, nextCol);  // move to next cell
+        return sudokuSolver(sudoku, row, nextCol);  // move to next cell
     }
 
     // there exists NO number in cell
@@ -69,7 +69,7 @@ bool sudokuSolver(int sudoku[9][9], int row, int col){
             if(sudokuSolver(sudoku, nextRow, nextCol)){
                 return true;
             }
-            sudoku[row][col] = 0;
+            sudoku[row][col] = 0;   // Backtracking
         }
     }
     return false;
