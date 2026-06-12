@@ -79,18 +79,20 @@ public:
         delete temp;
     }
 
-    // Insert in middle of LL:
+    // Insert in middle of LL:  SC = O(1)
     void insert(int val, int pos){
-        // Insert at beginning:
+        // Insert at beginning:  TC = O(1)
         if(pos == 0){
             Node* newNode = new Node(val);
             newNode->next = head;
             head = newNode;
 
+            // If list was empty:
             if(tail == nullptr) tail = newNode;
             return;
         }
 
+        // Insert in Middle:  TC = O(n)
         Node* prev = head;
         for(int i = 0; i<pos-1; i++){
             if(prev == nullptr){
@@ -100,6 +102,7 @@ public:
             prev = prev->next;
         }
 
+        // Invalid Position Handling:
         if(prev == nullptr){
             cout << "Invalid Position\n";
             return;
@@ -110,12 +113,13 @@ public:
         newNode->next = prev->next;
         prev->next = newNode;
 
+        // Insert at end: TC = O(n)
         if(newNode->next == nullptr){
             tail = newNode;
         }
     }
 
-    // pop_front():
+    // pop_front(): TC = O(1)
     void pop_front(){
         if(head == nullptr){
             cout << "Linked List is EMPTY\n";
@@ -171,6 +175,25 @@ public:
         }
         return -1;
     }
+
+    // Recursive Search: 
+    int helper(Node* temp, int key){
+        if(temp == nullptr) return -1;
+
+        if(temp->data == key){
+            return 0;
+        }
+
+        int idx = helper(temp->next, key);
+
+        if(idx == -1) return -1;
+
+        return idx + 1;
+    }
+
+    int searchRec(int key){
+        return helper(head, key);
+    }
 };
 
 int main(){
@@ -188,7 +211,7 @@ int main(){
     ll.printList();
 
     // Insert in Middle of ll:
-    ll.insert(100, 2);
+    ll.insert(100, 5);
     ll.printList(); 
 
     // pop_front(): 2->100->3->4->5->Null
@@ -202,6 +225,9 @@ int main(){
     // Iterative Search:
     int key = 100;
     cout << "Idx of Key " << key << ": " <<ll.searchItr(key) << endl;
+
+    // Recursive Search:
+    cout << ll.searchRec(key) << endl;
 
     return 0;
 }
