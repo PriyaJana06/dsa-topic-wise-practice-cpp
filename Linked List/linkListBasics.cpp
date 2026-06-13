@@ -24,6 +24,7 @@ public:
 };
 
 class List {
+    // Private properties:
     Node* head;
     Node* tail;
 
@@ -178,15 +179,13 @@ public:
 
     // Recursive Search: 
     int helper(Node* temp, int key){
-        if(temp == nullptr) return -1;
+        if(temp == nullptr) return -1;  // Base Case
 
-        if(temp->data == key){
-            return 0;
-        }
+        if(temp->data == key) return 0;
 
         int idx = helper(temp->next, key);
 
-        if(idx == -1) return -1;
+        if(idx == -1) return -1;  // Handles key NOT FOUND 
 
         return idx + 1;
     }
