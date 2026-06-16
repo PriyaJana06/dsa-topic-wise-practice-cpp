@@ -14,11 +14,10 @@ public:
 };
 
 class List {
-    // Private Properties:
+public:
     Node* head;
     Node* tail;
 
-public:
     List(){
         head = nullptr;
         tail = nullptr;
@@ -45,6 +44,23 @@ public:
             newNode->next = head;
             head = newNode;
         }
+    }
+
+    void pop_front(){
+        if(head == nullptr){
+            cout << "Linked List is EMPTY\n";
+            return;
+        } 
+
+        Node* temp = head;
+        head = head->next;
+
+        // if list became empty
+        if(head == nullptr){
+            tail = nullptr;
+        }
+        temp->next = nullptr;
+        delete temp;
     }
 
     // Que: Reverse a Linked List:
@@ -89,6 +105,24 @@ public:
 
         delete toDel;
     }
+
+    // Que: Detect Cycle/loop in Linked List: TC = O(N)
+    bool hasCycle(Node* head){
+        Node* slow = head;
+        Node* fast = head;
+
+        while(fast != nullptr && fast->next != nullptr){
+            slow = slow->next;   // +1
+            fast = fast->next->next;   // +2
+
+            if(fast == slow){   // Floyd's Cycle Finding Algorithm
+                cout << "Cycle Exists\n";
+                return true;
+            }
+        }
+        cout << "Cycle doesn't exists\n";
+        return false;
+    }
 };
 
 int main(){
@@ -106,9 +140,15 @@ int main(){
     // ll.printList();
 
     // Que: Find & Remove Nth Node from End:
-    int n = 2;
-    ll.removeNth(n);
-    ll.printList();
+    // int n = 2;
+    // ll.removeNth(n);
+    // ll.printList();
+
+    // Que: Detect Cycle/Loop in Linked List: 1->2->3->4->5->1
+    ll.tail->next = ll.head;     // LList with cycle: 1->2->3->4->5->1
+    ll.hasCycle(ll.head);
+
+
 
 
     return 0;
