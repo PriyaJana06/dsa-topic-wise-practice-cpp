@@ -63,6 +63,7 @@ public:
         delete temp;
     }
 
+
     // Que: Reverse a Linked List:
     void reverse(){
         Node* curr = head;
@@ -78,6 +79,7 @@ public:
         }
         head = prev;  // new head
     }
+
 
     // Que: Find & Remove Nth Node from End: TC = O(N) ; SC = O(1)
     int getSize(){
@@ -106,6 +108,7 @@ public:
         delete toDel;
     }
 
+
     // Que: Detect Cycle/loop in Linked List: TC = O(N)
     bool hasCycle(Node* head){
         Node* slow = head;
@@ -123,6 +126,48 @@ public:
         cout << "Cycle doesn't exists\n";
         return false;
     }
+
+    
+    // Que: Removing Cycle in a LList:
+    void removeCycle(Node* head){
+        // to detect cycle:
+        Node* slow = head;
+        Node* fast = head;
+        bool isCycle = false;
+        
+        while(fast != nullptr && fast->next != nullptr){
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if(slow == fast){
+                cout << "Cycle Exists\n";
+                isCycle = true;
+                break;
+            }
+        }
+
+        if(!isCycle){
+            cout << "Cycle doesn't exists\n";
+            return;
+        }
+
+        slow = head;
+        // special case: tail -> head
+        if(slow == fast){
+            while(fast->next != slow){
+                fast = fast->next;
+            }
+            fast->next = nullptr;
+        } else{    // Normal case
+            Node* prev = fast;
+            while(slow != fast){
+                slow = slow->next;
+                fast = prev;
+                fast = fast->next;
+            }
+            prev->next = nullptr;   // remove cycle
+        }
+    }
 };
 
 int main(){
@@ -132,21 +177,29 @@ int main(){
     ll.push_front(3);
     ll.push_front(2);
     ll.push_front(1);
-    ll.printList();
+    // ll.printList();
 
     // Que: Reverse a Linked List:
-    // cout << "Reversed Linked List: ";
-    // ll.reverse();
-    // ll.printList();
+    cout << "Reversed Linked List: ";
+    ll.reverse();
+    ll.printList();
+
 
     // Que: Find & Remove Nth Node from End:
-    // int n = 2;
-    // ll.removeNth(n);
-    // ll.printList();
+    int n = 2;
+    ll.removeNth(n);
+    ll.printList();
+
 
     // Que: Detect Cycle/Loop in Linked List: 1->2->3->4->5->1
     ll.tail->next = ll.head;     // LList with cycle: 1->2->3->4->5->1
-    ll.hasCycle(ll.head);
+    // ll.hasCycle(ll.head);
+    // ll.printList();  // can't print because linked list has cycle(infinitely runs)
+
+
+    // Que: Removing Cycle in a LList:
+    ll.removeCycle(ll.head);
+    ll.printList();
 
 
 
