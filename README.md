@@ -4,7 +4,7 @@ My Repository of Data Structures and Algorithms practice of basics in C++ includ
 This repository will contain my topic-wise implementations of Data Structures and Algorithms using C++.
 
 ## Topics Covered
-- Arrays
+- Arrays/Vectors
 - Vectors
 - Bit Manipulation
 - OOP Concepts
@@ -14,6 +14,7 @@ This repository will contain my topic-wise implementations of Data Structures an
 - Sorting Algorithms
 - Linked List
 - Greedy Algorithms
+- STL Concepts
 
 This repository is continuously expanding as new concepts and problems are added.
 This repository will be organized into multiple folders, each containing various programs related to OOP and DSA.
