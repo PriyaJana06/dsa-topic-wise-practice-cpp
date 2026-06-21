@@ -168,6 +168,40 @@ public:
             prev->next = nullptr;   // remove cycle
         }
     }
+
+    // Que: Merge Sort on LL:
+
+    Node* splitAtMid(Node* head){
+        Node* slow = head;
+        Node* fast = head;
+        Node* prev = nullptr;
+
+        while(fast != nullptr && fast->next != nullptr){
+            prev = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        if(prev != nullptr){
+            prev->next = nullptr;
+        }
+        
+        return slow;   // slow = rightHead
+    }
+
+    void mergeSortLL(Node* head){
+
+        if(head == nullptr || head->next == nullptr){
+            return;
+        }
+
+        Node* rightHead = sliptAtMid(head);
+
+        mergeSortLL(head);  // left head
+        mergeSortLL(rightHead);  // right head
+
+        merge(head, rightHead);   // sorted Linked list
+    }
 };
 
 int main(){
