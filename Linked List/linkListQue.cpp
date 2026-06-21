@@ -63,6 +63,16 @@ public:
         delete temp;
     }
 
+        void push_back(int val){
+        Node* newNode = new Node(val);
+
+        if(head == nullptr){
+            head = tail = newNode;
+        } else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
 
     // Que: Reverse a Linked List:
     void reverse(){
@@ -182,25 +192,54 @@ public:
             fast = fast->next->next;
         }
 
+        // Single Node:
         if(prev != nullptr){
-            prev->next = nullptr;
+            prev->next = nullptr;  // split at middle
         }
         
         return slow;   // slow = rightHead
     }
 
-    void mergeSortLL(Node* head){
+    Node* merge(Node* left, Node* right){
+        List ans;
+        Node* i = left;
+        Node* j = right;
+
+        while(i != nullptr && j != nullptr){
+            if(i->data <= j->data){
+                ans.push_back(i->data);
+                i = i->next;
+            } else {
+                ans.push_back(j->data);
+                j = j->next;
+            }
+        }
+
+        while(i != nullptr){
+            ans.push_back(i->data);
+            i = i->next;
+        }
+
+        while(j != nullptr){
+            ans.push_back(j->data);
+            j = j->next;
+        }
+
+        return ans.head;
+    }
+
+    Node* mergeSortLL(Node* head){
 
         if(head == nullptr || head->next == nullptr){
-            return;
+            return head;
         }
 
         Node* rightHead = sliptAtMid(head);
 
-        mergeSortLL(head);  // left head
-        mergeSortLL(rightHead);  // right head
+        Node* left = mergeSortLL(head);  // left head
+        Node* right = mergeSortLL(rightHead);  // right head
 
-        merge(head, rightHead);   // sorted Linked list
+        return merge(left, right);   // head of sorted Linked list
     }
 };
 
@@ -234,6 +273,9 @@ int main(){
     // Que: Removing Cycle in a LList:
     ll.removeCycle(ll.head);
     ll.printList();
+
+    // Que: Merge 2 Sorted LL:
+
 
 
 
