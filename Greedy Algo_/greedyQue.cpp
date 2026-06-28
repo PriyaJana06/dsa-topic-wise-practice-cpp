@@ -24,6 +24,22 @@ int maxChainLength(vector<pair<int, int>> pairs){
     return ans;
 }
 
+// Que: Indian Coins:  find no. of coins to make change for given amount -> TC = O(n) ~ O(1)
+int coinsChange(vector<int> coins, int amount){
+    int ans = 0;
+    int n = coins.size();
+
+    cout << "Denominations used: ";
+    for(int i = n-1; i >= 0 && amount > 0; i--){
+        if(amount >= coins[i]){
+            ans += amount/coins[i];
+            amount %= coins[i];
+            cout << coins[i] << " ";
+        }
+    } cout << "\n";
+    return ans;
+}
+
 int main(){
 
     // Que: Max. Length Chain of Pairs:
@@ -39,7 +55,11 @@ int main(){
     cout << "Max. Chain length of pairs: " << maxChainLength(pairs) << endl;
 
 
+    // Que: Indian Coins:
+    vector<int> coins = {1, 2, 5, 10, 20, 50, 100, 500, 2000};
+    int amount = 1099;
 
-    
+    cout << "Min. coins for change: " << coinsChange(coins, amount) << endl;
+
     return 0;
 }
