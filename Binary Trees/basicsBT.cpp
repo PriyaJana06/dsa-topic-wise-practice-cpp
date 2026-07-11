@@ -33,18 +33,27 @@ Node* buildTree(vector<int> nodes){
 void preorder(Node* root){
     if(root == nullptr) return;
 
-    cout << root->data << " ";
-    preorder(root->left);
-    preorder(root->right);
+    cout << root->data << " ";   // root
+    preorder(root->left);    // left subtree
+    preorder(root->right);   // right subtree
 }
 
-// Inorder traversal: 
+// Inorder traversal:  TC = O(n)
 void inorder(Node* root){
     if(root == nullptr) return;
 
-    inorder(root->left);
-    cout << root->data << " ";
-    inorder(root->right);
+    inorder(root->left); // left subtree
+    cout << root->data << " ";   // root
+    inorder(root->right);  // right subtree
+}
+
+// Postorder traversal:  TC = O(n)
+void postorder(Node* root){
+    if(root == nullptr) return;
+
+    postorder(root->left); // left subtree
+    postorder(root->right);  // right subtree
+    cout << root->data << " ";   // root
 }
 
 int main() {
@@ -62,6 +71,10 @@ int main() {
     // Inorder Traversal:
     cout << "Inorder traversal: "; 
     inorder(root); cout << endl;
-    return 0;
 
+    // Postorder traversal:
+    cout << "Preorder traversal: ";
+    postorder(root); cout << endl;
+
+    return 0;
 }
