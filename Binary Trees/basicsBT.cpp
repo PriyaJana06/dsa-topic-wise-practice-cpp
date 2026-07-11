@@ -29,11 +29,25 @@ Node* buildTree(vector<int> nodes){
     return currNode;
 }
 
+// Preorder traversal:  TC = O(n)
+void preorder(Node* root){
+    if(root == nullptr) return;
+
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
 int main() {
     // Preorder sequence:
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
     Node* root = buildTree(nodes);
     cout << "root = " << root->data << endl;
+
+
+    // Preorder traversal:
+    cout << "Preorder traversal: ";
+    preorder(root); cout << endl;
     return 0;
 }
