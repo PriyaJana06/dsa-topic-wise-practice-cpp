@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<queue>
 using namespace std;
 
 class Node{
@@ -56,6 +57,28 @@ void postorder(Node* root){
     cout << root->data << " ";   // root
 }
 
+// Level Order traversal:  TC = O(n)  SC = O(n)
+void levelOrder(Node* root){
+    if(root == nullptr) return; 
+
+    queue<Node*> Q;
+    Q.push(root);
+
+    while(!Q.empty()){
+        Node* currNode = Q.front();
+        Q.pop();
+        cout << currNode->data << " ";
+         
+        if(currNode->left != nullptr){
+            Q.push(currNode->left);
+        }
+
+        if(currNode->right != nullptr){
+            Q.push(currNode->right);
+        }
+    }
+}
+
 int main() {
     // Preorder sequence:
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
@@ -75,6 +98,10 @@ int main() {
     // Postorder traversal:
     cout << "Preorder traversal: ";
     postorder(root); cout << endl;
+
+    // Level Order traversal:
+    cout << "LevelOrder traversal: ";
+    levelOrder(root); cout << endl;
 
     return 0;
 }
