@@ -79,6 +79,36 @@ void levelOrder(Node* root){
     }
 }
 
+// Variation:  TC = O(N)
+void levelOrderPrint(Node* root){
+    if(root == nullptr) return; 
+
+    queue<Node*> Q;
+    Q.push(root);
+    Q.push(nullptr);
+
+    while(!Q.empty()){
+        Node* currNode = Q.front();
+        Q.pop();
+
+        if(currNode == nullptr){
+            cout << "\n";
+            if(Q.empty()) break;
+            Q.push(nullptr);   // to track nextline
+        } else {
+            cout << currNode->data << " ";
+            
+            if(currNode->left != nullptr){
+                Q.push(currNode->left);
+            }
+
+            if(currNode->right != nullptr){
+                Q.push(currNode->right);
+            }
+        }
+    }
+}
+
 int main() {
     // Preorder sequence:
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
@@ -103,6 +133,7 @@ int main() {
     cout << "LevelOrder traversal: ";
     levelOrder(root); cout << endl;
     
+    levelOrderPrint(root); 
 
     return 0;
 }
