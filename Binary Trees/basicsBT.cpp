@@ -121,6 +121,16 @@ int heightOfTree(Node* root){
     return currHt;
 }
 
+// Count of Nodes: 
+int countNodes(Node* root){
+    if(root == nullptr) return 0;
+
+    int leftCount = countNodes(root->left);
+    int rightCount = countNodes(root->right);
+
+    return leftCount + rightCount + 1;
+}
+
 int main() {
     // Preorder sequence:
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
@@ -149,6 +159,9 @@ int main() {
 
     // Height of A tree:
     cout << "Height of tree: " << heightOfTree(root) << endl;
+
+    // Count of Nodes:
+    cout << "No. of nodes in Tree: " << countNodes(root) << endl;
 
     return 0;
 }
