@@ -109,6 +109,18 @@ void levelOrderPrint(Node* root){
     }
 }
 
+// Height of a Tree:
+int heightOfTree(Node* root){
+    if(root == nullptr) return 0;
+
+    int leftHt = heightOfTree(root->left);
+    int rightHt = heightOfTree(root->right);
+
+    int currHt = max(leftHt, rightHt) + 1;
+    
+    return currHt;
+}
+
 int main() {
     // Preorder sequence:
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
@@ -132,8 +144,11 @@ int main() {
     // Level Order traversal:
     cout << "LevelOrder traversal: ";
     levelOrder(root); cout << endl;
-    
+    // Variation:
     levelOrderPrint(root); 
+
+    // Height of A tree:
+    cout << "Height of tree: " << heightOfTree(root) << endl;
 
     return 0;
 }
