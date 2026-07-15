@@ -131,6 +131,19 @@ int countNodes(Node* root){
     return leftCount + rightCount + 1;
 }
 
+// Sum of Nodes in a Tree:
+int sumOfNodes(Node* root){
+    if(root == nullptr) return 0;
+
+    int leftSum = sumOfNodes(root->left);
+    int rightSum = sumOfNodes(root->right);
+
+    int currSum = leftSum + rightSum + root->data;
+    cout << "Sum: " << currSum << "\n"; 
+
+    return currSum;
+}
+
 int main() {
     // Preorder sequence:
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
@@ -162,6 +175,14 @@ int main() {
 
     // Count of Nodes:
     cout << "No. of nodes in Tree: " << countNodes(root) << endl;
+
+    Node* root2 = new Node(5);
+    root2->left = new Node(3);
+    root2->right = new Node(4);
+    cout << "No. of nodes in Tree: " << countNodes(root2) << endl;
+
+    // Sum of Nodes in a Tree:
+    cout << "Sum of Nodes of Tree: " << sumOfNodes(root) << endl;
 
     return 0;
 }
