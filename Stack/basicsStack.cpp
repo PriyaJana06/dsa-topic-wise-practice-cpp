@@ -2,11 +2,12 @@
 #include<vector>
 using namespace std;
 
-// Implementation of Stack using Vector:
+// Implementation of Stack using Vector with class Template:
+template<class T>  // class template
 class Stack{
-    vector<int> vec;
+    vector<T> vec;
 public:
-    void push(int val){  // O(1)
+    void push(T val){  // O(1)
         vec.push_back(val);
     }
 
@@ -18,11 +19,11 @@ public:
         vec.pop_back();
     }
 
-    int top(){    // O(1)
-        if(isEmpty()){
-            cout << "Stack Underflow\n";
-            return -1;
-        }
+    T top(){    // O(1)
+        // if(isEmpty()){
+        //     cout << "Stack Underflow\n";
+        //     return -1;
+        // }
 
         int lastIdx = vec.size()-1;
         return vec[lastIdx];
@@ -34,18 +35,27 @@ public:
 };
 
 int main(){
-    Stack s;
+    Stack<int> s;   // class Template
+    Stack<char> s1;  
 
-    s.push(3);
-    s.push(2);
-    s.push(1);
+    // s.push(3);
+    // s.push(2);
+    // s.push(1);
+
+    // s.pop();
+    // s.pop();
+    // s.pop();
+
+    s1.push('c');
+    s1.push('b');
+    s1.push('a');
 
     // To print Stack Elements:
     cout << "Stack Elements: ";
-    while(!s.isEmpty()){
-        cout << s.top() << " ";
-        s.pop();
-    }
+    while(!s1.isEmpty()){
+        cout << s1.top() << " ";
+        s1.pop();
+    } cout << endl;
 
     return 0;
 }
