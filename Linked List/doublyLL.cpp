@@ -9,7 +9,8 @@ public:
 
     Node(int val){
         data = val;
-        prev = next = nullptr;
+        next = nullptr;
+        prev = nullptr;
     }
 };
 
@@ -23,7 +24,7 @@ public:
     }
 
     // push_front(val):
-    void push_front(int val){
+    Node* push_front(int val){
         Node* newNode = new Node(val);
 
         if(head == nullptr){
@@ -33,6 +34,27 @@ public:
             head->prev = newNode;
             head = newNode;
         }
+        return head;
+    }
+
+    // pop_front():
+    void pop_front(){
+        if(head == nullptr){
+            cout << "List is empty\n";
+            return;
+        }
+
+        Node* temp = head;
+        head = head->next;
+        
+        if(head != nullptr){
+            head->prev = nullptr;
+        } else {
+            tail = nullptr;  // list became empty
+        }
+
+        temp->next = nullptr;
+        delete temp;
     }
 
 // To print Doubly List:
@@ -57,6 +79,23 @@ int main(){
 
     // To print List:
     dbll.printList();
+
+    // pop_front():
+    dbll.pop_front();
+    dbll.printList();
+
+    dbll.pop_front();
+    dbll.printList();
+
+    dbll.pop_front();
+    dbll.printList();
+
+    dbll.pop_front();
+    dbll.printList();
+
+    dbll.pop_front();
+    
+
 
     return 0;
 }
