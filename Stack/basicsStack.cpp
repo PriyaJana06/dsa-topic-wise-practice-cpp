@@ -7,6 +7,7 @@ using namespace std;
 template<class T>  // class template
 class Stack{
     vector<T> vec;
+
 public:
     void push(T val){  // O(1)
         vec.push_back(val);
@@ -22,9 +23,8 @@ public:
 
     T top(){    // O(1)
         if(isEmpty()){
-            cout << "Stack Underflow\n";
+            cout << "Stack is empty\n";
         }
-
         int lastIdx = vec.size()-1;
         return vec[lastIdx];
     }
@@ -34,10 +34,10 @@ public:
     }
 };
 
-// Implementation of Stack using Linked List STL:
+// Implementation of Stack using Linked List (STL):
 template<class T>
 class Stack2 {
-    list<T> ll;
+    list<T> ll;   // STL Linked List
 
 public:
     void push(T val){
@@ -64,6 +64,63 @@ public:
     }
 };
 
+// Implementation of Stack using Linked list only:
+template<class T>
+class Node{
+public:
+    T data;
+    Node<T>* next;
+
+    Node(T val){
+        data = val;
+        next = nullptr;
+    }
+};
+
+template<class T>
+class Stack3{
+public:
+    Node<T>* head;
+
+    Stack3(){    // when new stack is created head = nullptr
+        head = nullptr;
+    }
+
+    void push(T val){
+        Node<T>* newNode = new Node<T>(val);
+
+        if(head == nullptr){
+            head = newNode;
+        } else {
+            newNode->next = head;
+            head= newNode;
+        }
+    }
+
+    void pop(){
+        if(head == nullptr){
+            cout << "Stack Underflow\n";
+            return;
+        } 
+        Node<T>* temp = head;
+        head = head->next;
+        temp->next = nullptr;
+
+        delete temp;
+    }
+
+    T top(){
+        if(isEmpty()){
+            cout << "Stack is empty\n";
+        }
+        return head->data;
+    }
+
+    bool isEmpty(){
+        return head == nullptr; 
+    }
+};
+
 int main(){
     //// Implementation of stack using vector:
     Stack<int> s;   // class Template
@@ -82,14 +139,17 @@ int main(){
 
     //// Implementation of Stack using linked list(STL):
     Stack2<int> s1;
-    s1.push(4);
-    s1.push(3);
-    s1.push(2);
+    s1.push(10);
+    s1.push(20);
+    s1.push(30);
+
+    cout << "Top of Stack: " << s1.top() << endl;
 
     while(!s1.isEmpty()){
         cout << s1.top() << " ";
         s1.pop();
     } cout << endl;
+
 
     return 0;
 }
