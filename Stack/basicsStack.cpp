@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<list>
+#include<stack>  // stack STL
 using namespace std;
 
 // Implementation of Stack using Vector with class Template:
@@ -37,9 +38,9 @@ public:
 // Implementation of Stack using Linked List (STL):
 template<class T>
 class Stack2 {
+public:
     list<T> ll;   // STL Linked List
 
-public:
     void push(T val){
         ll.push_front(val);
     }
@@ -137,7 +138,7 @@ int main(){
     } cout << endl;
 
 
-    //// Implementation of Stack using linked list(STL):
+    //// Implementation of Stack using linked list(STL) :
     Stack2<int> s1;
     s1.push(10);
     s1.push(20);
@@ -150,6 +151,32 @@ int main(){
         s1.pop();
     } cout << endl;
 
+    //// Implementation of Stack using linked list only:
+    Stack3<int> s2;
+    s2.push(100);
+    s2.push(200);
+    s2.push(300);
+
+    cout << "Top of Stack: " << s2.top() << endl;
+
+    while(!s2.isEmpty()){
+        cout << s2.top() << " ";
+        s2.pop();
+    } cout << endl;
+
+
+    // Stack STL:
+    stack<char> stack;
+    
+    stack.push('a');
+    stack.push('b');
+    stack.push('c');
+
+    cout << "Char in Stack: ";
+    while(!stack.empty()){
+        cout << stack.top() << " ";
+        stack.pop();
+    }cout << endl;
 
     return 0;
 }
