@@ -31,8 +31,6 @@ public:
             temp = temp->next;
         } 
         cout << "NULL" << "\n";
-
-        delete temp;
     }
 
     void push_front(int val){
@@ -63,7 +61,7 @@ public:
         delete temp;
     }
 
-        void push_back(int val){
+    void push_back(int val){
         Node* newNode = new Node(val);
 
         if(head == nullptr){
@@ -180,7 +178,7 @@ public:
     }
 
     
-    // Que: Merge Sort on LL:
+// IMP: Que: Merge Sort on LL:
     Node* splitAtMid(Node* head){
         Node* slow = head;
         Node* fast = head;
@@ -200,7 +198,7 @@ public:
         return slow;   // slow = rightHead
     }
 
-    Node* merge(Node* left, Node* right){
+    Node* mergeLL(Node* left, Node* right){
         List ans;
         Node* i = left;
         Node* j = right;
@@ -234,48 +232,58 @@ public:
             return head;
         }
 
-        Node* rightHead = sliptAtMid(head);
+        Node* rightHead = splitAtMid(head);
 
         Node* left = mergeSortLL(head);  // left head
         Node* right = mergeSortLL(rightHead);  // right head
 
-        return merge(left, right);   // head of sorted Linked list
+        return mergeLL(left, right);   // head of sorted Linked list
     }
 };
 
 int main(){
     List ll;
-    ll.push_front(5);
-    ll.push_front(4);
-    ll.push_front(3);
-    ll.push_front(2);
-    ll.push_front(1);
+    // ll.push_front(5);
+    // ll.push_front(4);
+    // ll.push_front(3);
+    // ll.push_front(2);
+    // ll.push_front(1);
     // ll.printList();
 
     // Que: Reverse a Linked List:
-    cout << "Reversed Linked List: ";
-    ll.reverse();
-    ll.printList();
+    // cout << "Reversed Linked List: ";
+    // ll.reverse();
+    // ll.printList();
 
 
-    // Que: Find & Remove Nth Node from End:
-    int n = 2;
-    ll.removeNth(n);
-    ll.printList();
+    // // Que: Find & Remove Nth Node from End:
+    // int n = 2;
+    // ll.removeNth(n);
+    // ll.printList();
 
 
     // Que: Detect Cycle/Loop in Linked List: 1->2->3->4->5->1
-    ll.tail->next = ll.head;     // LList with cycle: 1->2->3->4->5->1
+    // ll.tail->next = ll.head;     // LList with cycle: 1->2->3->4->5->1
     // ll.hasCycle(ll.head);
     // ll.printList();  // can't print because linked list has cycle(infinitely runs)
 
 
     // Que: Removing Cycle in a LList:
-    ll.removeCycle(ll.head);
-    ll.printList();
+    // ll.removeCycle(ll.head);
+    // ll.printList(); cout << "\n";
 
     // Que: Merge 2 Sorted LL:
+    ll.push_front(1);
+    ll.push_front(2);
+    ll.push_front(3);
+    ll.push_front(4);
+    ll.push_front(5);
+    ll.printList();
 
+    cout << "Merge Sort Linked List: ";
+    ll.head = ll.mergeSortLL(ll.head);
+    ll.printList();
+    
 
 
 
