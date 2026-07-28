@@ -178,97 +178,6 @@ public:
             prev->next = nullptr;   // remove cycle
         }
     }
-
-    
-// IMP: Que: Merge Sort on LL:
-    Node* splitAtMid(Node* head){
-        Node* slow = head;
-        Node* fast = head;
-        Node* prev = nullptr;
-
-        while(fast != nullptr && fast->next != nullptr){
-            prev = slow;
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-
-        // Single Node:
-        if(prev != nullptr){
-            prev->next = nullptr;  // split at middle
-        }
-        
-        return slow;   // slow = rightHead
-    }
-
-    Node* mergeLL(Node* left, Node* right){
-        List ans;  
-        Node* i = left;
-        Node* j = right;
-
-        while(i != nullptr && j != nullptr){
-            if(i->data <= j->data){
-                ans.push_back(i->data);
-                i = i->next;
-            } else {
-                ans.push_back(j->data);
-                j = j->next;
-            }
-        }
-
-        while(i != nullptr){
-            ans.push_back(i->data);
-            i = i->next;
-        }
-
-        while(j != nullptr){
-            ans.push_back(j->data);
-            j = j->next;
-        }
-
-        return ans.head;
-    }
-
-    Node* mergeSortLL(Node* head){
-        if(head == nullptr || head->next == nullptr){
-            return head;
-        }
-
-        Node* rightHead = splitAtMid(head);
-
-        Node* left = mergeSortLL(head);  // left head
-        Node* right = mergeSortLL(rightHead);  // right head
-
-        return mergeLL(left, right);   // head of sorted Linked list
-    }
-
-    // Que: Zig-Zag Linked List:
-    Node* zigZagLL(Node* head){
-
-        Node* leftHead = splitAtMid(head);
-        Node* rightHeadRev = reverse(leftHead);
-
-        // alternate merging: 1st head = head; 2nd head = rightHeadRev
-        Node* left = head;
-        Node* right = rightHeadRev;
-        Node* tail = right;
-
-        while(left != nullptr && right != nullptr){
-            Node* nextLeft = left->next;
-            Node* nextRight = right->next;
-
-            left->next = right;
-            right->next = nextLeft;
-            tail = right;
-
-            left = nextLeft;
-            right = nextRight;
-        }
-
-        if(right != nullptr){
-            tail->next = right;
-        }
-        return head;
-    }
 };
 
 int main(){
@@ -302,21 +211,6 @@ int main(){
     // ll.removeCycle(ll.head);
     // ll.printList(); cout << "\n";
 
-    // Que: Merge 2 Sorted LL:
-    ll.push_front(1);
-    ll.push_front(2);
-    ll.push_front(3);
-    ll.push_front(4);
-    ll.push_front(5);
-    ll.printList();
-
-    cout << "Merge Sort Linked List: ";
-    ll.head = ll.mergeSortLL(ll.head);
-    ll.printList();
-
-    // Que: Zig-Zag Linked List:
-    ll.head = ll.zigZagLL(ll.head);
-    ll.printList();
 
     return 0;
 }
