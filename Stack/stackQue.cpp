@@ -3,6 +3,13 @@
 #include<string>
 using namespace std;
 
+void printStack(stack<int> s){
+    while(!s.empty()){
+        cout << s.top() << " ";
+        s.pop();
+    }cout << endl;
+}
+
 // Push At Bottom of Stack:
 void pushAtBottom(stack<int> &s, int val){  // TC = O(N)
     if(s.empty()){
@@ -32,23 +39,37 @@ string reverseString(string str){   // SC = O(n)
     return ans;
 }
 
+//Que: Reverse a stack:  TC = O(n)
+void reverseStack(stack<int> &s){
+    if(s.empty()){
+        return;
+    }
+
+    int temp = s.top();
+    s.pop();
+    reverseStack(s);
+    pushAtBottom(s, temp);
+}
+
 int main(){
     // Push At Bottom of Stack:
     stack<int> s;
     s.push(3);
     s.push(2);
     s.push(1);
-    pushAtBottom(s, 4);
+    // pushAtBottom(s, 4);
 
     cout << "Stack Elements: ";
-    while(!s.empty()){
-        cout << s.top() << " ";
-        s.pop();
-    }cout << endl;
+    printStack(s);
 
     //Que: Reverse a string using stack:
     string str = "priyanka";
     cout << "Reversed String: " << reverseString(str) << endl;
+
+    //Que: Reverse Stack:
+    reverseStack(s);
+    cout << "Reversed Stack: ";
+    printStack(s);
 
     return 0;
 }
