@@ -1,5 +1,6 @@
 #include<iostream>
 #include<stack>
+#include<vector>
 #include<string>
 using namespace std;
 
@@ -51,6 +52,35 @@ void reverseStack(stack<int> &s){
     pushAtBottom(s, temp);
 }
 
+// Que: Stock Span Problem: 
+vector<int> stockSpan(vector<int>& stock, vector<int>& span){
+    stack<int> s;
+
+    s.push(0);
+    span[0] = 1;   // idx[0]
+
+    int n = stock.size();
+    for(int i=1; i<n; i++){   // idx[1]
+        int currPrice = stock[i];
+        while(!s.empty() && currPrice >= stock[s.top()]){
+            s.pop();
+        }
+
+        if(s.empty()){
+            span[i] = i+1;
+        } else {
+            int prevHigh = s.top();
+            span[i] = i-prevHigh;
+        }
+        s.push(i);   // push elements into stack 
+    }
+    
+    for(int i=0; i<n; i++){
+        cout << span[i] << " ";
+    } cout << endl; 
+}
+
+
 int main(){
     // Push At Bottom of Stack:
     stack<int> s;
@@ -70,6 +100,13 @@ int main(){
     reverseStack(s);
     cout << "Reversed Stack: ";
     printStack(s);
+
+    // Que: Stock Span Problem:
+    vector<int> stock = {100, 80, 60, 70, 60, 85, 100};
+    vector<int> span = {0, 0, 0, 0, 0, 0, 0};
+    cout << "Stock Span: ";
+    stockSpan(stock, span);
+    
 
     return 0;
 }
