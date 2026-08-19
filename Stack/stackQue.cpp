@@ -53,7 +53,7 @@ void reverseStack(stack<int> &s){
 }
 
 // Que: Stock Span Problem: 
-vector<int> stockSpan(vector<int>& stock, vector<int>& span){
+void stockSpan(vector<int>& stock, vector<int>& span){
     stack<int> s;
 
     s.push(0);
@@ -77,6 +77,32 @@ vector<int> stockSpan(vector<int>& stock, vector<int>& span){
     
     for(int i=0; i<n; i++){
         cout << span[i] << " ";
+    } cout << endl; 
+}
+
+// Que: Next Greater Element
+void nextGreater(vector<int>& arr, vector<int>& ans){
+    stack<int> s;
+    int n = arr.size();
+    ans[n-1] = -1; 
+    s.push(arr[n-1]);
+    
+    for(int idx = n-2; idx>= 0; idx--){
+        int curr = arr[idx];
+        while(!s.empty() && curr >= s.top()){
+            s.pop();
+        }
+
+        if(s.empty()){
+            ans[idx] = -1;
+        } else {
+            ans[idx] = s.top();
+        }
+        s.push(curr);
+    }
+
+    for(int i=0; i<ans.size(); i++){
+        cout << ans[i] << " ";
     } cout << endl; 
 }
 
@@ -107,6 +133,11 @@ int main(){
     cout << "Stock Span: ";
     stockSpan(stock, span);
     
+    // Que: Next Greater Element:
+    vector<int> arr = {6, 8, 0, 1, 3};
+    vector<int> ans = {0, 0, 0, 0, 0};
+    cout << "Next Greater element: ";
+    nextGreater(arr, ans);
 
     return 0;
 }
