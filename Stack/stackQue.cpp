@@ -80,7 +80,7 @@ void stockSpan(vector<int>& stock, vector<int>& span){
     } cout << endl; 
 }
 
-// Que: Next Greater Element
+// Que: Next Greater Element  - TC = O(n)
 void nextGreater(vector<int>& arr, vector<int>& ans){
     stack<int> s;
     int n = arr.size();
@@ -104,6 +104,35 @@ void nextGreater(vector<int>& arr, vector<int>& ans){
     for(int i=0; i<ans.size(); i++){
         cout << ans[i] << " ";
     } cout << endl; 
+}
+
+// Que: Valid Parenthesis:  TC = O(N) | SC = O(N)
+bool isValidParenthesis(string str){
+    stack<char> s;
+
+    for(int i=0; i<str.size(); i++){
+        char ch = str[i];
+        // opening char
+        if(ch == '(' || ch == '[' || ch == '{'){
+            s.push(ch); 
+        } else {  // closing char: corner case
+            if(s.empty()){
+                return false;
+            } 
+
+            // match with top of stack
+            int top = s.top();
+            if((top == '(' && ch == ')') || 
+                (top == '[' && ch == ']') || 
+                (top == '{' && ch == '}')){
+                    s.pop();
+            } else {
+                return false;
+            }
+        }
+    }
+
+    return s.empty();
 }
 
 
@@ -138,6 +167,14 @@ int main(){
     vector<int> ans = {0, 0, 0, 0, 0};
     cout << "Next Greater element: ";
     nextGreater(arr, ans);
+
+    // Que: Valid Parenthesis:
+    string str1 = "([}])";   // invalid: insufficient no. of opening brackets
+    string str2 = "([{}])";  // valid: true
+    cout << "Valid Parenthesis: ";
+    cout << isValidParenthesis(str1) << " ";
+    cout << isValidParenthesis(str2) << endl;
+
 
     return 0;
 }
