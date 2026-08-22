@@ -135,6 +135,29 @@ bool isValidParenthesis(string str){
     return s.empty();
 }
 
+// Que: Duplicate Parenthesis: TC = O(N) | SC = O(N)
+bool isDuplicateParenthesis(string str){
+    stack<char> s;
+
+    for(int i=0; i<str.size(); i++){
+        char ch = str[i];
+
+        if(ch != ')'){
+            s.push(ch);
+        } else {
+            if(s.top() == '('){
+                return true;   // duplicate
+            }
+             
+            while(s.top() != '('){
+                s.pop();
+            }
+            s.pop();    // to remove opening char from stack if closing is found
+        } 
+    }
+    return false;
+}
+
 
 int main(){
     // Push At Bottom of Stack:
@@ -174,6 +197,13 @@ int main(){
     cout << "Valid Parenthesis: ";
     cout << isValidParenthesis(str1) << " ";
     cout << isValidParenthesis(str2) << endl;
+
+    // Que: Duplicate Parenthesis:
+    string str3 = "((a+b))";
+    string str4 = "((a+b)+(c+d))";
+
+    cout << "String has duplicate (): " << isDuplicateParenthesis(str3) << endl;
+    cout << "String doesn't have duplicate (): " << isDuplicateParenthesis(str4) << endl;
 
 
     return 0;
