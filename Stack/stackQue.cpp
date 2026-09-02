@@ -80,7 +80,7 @@ void stockSpan(vector<int>& stock, vector<int>& span){
     } cout << endl; 
 }
 
-// Que: Next Greater Element  - TC = O(n)
+// Que: Next Greater Element - TC = O(n)
 void nextGreater(vector<int>& arr, vector<int>& ans){
     stack<int> s;
     int n = arr.size();
@@ -158,6 +158,62 @@ bool isDuplicateParenthesis(string str){
     return false;
 }
 
+// Que: Max Area of Histogram:
+int maxAreaHistogram(vector<int> &height){
+    int n = height.size();
+    vector<int> nsl(n);   // next smaller left
+    vector<int> nsr(n);   // next smaller right
+    stack<int> s;
+
+    // next smaller left:
+    nsl[0] = -1;
+    s.push(0);
+    for(int i=1; i<height.size(); i++){
+        int curr = height[i];
+        while(!s.empty() && curr <= height[s.top()]){
+            s.pop();
+        }
+
+        if(s.empty()){
+            nsl[i] = -1;
+        } else {
+            nsl[i] = s.top();
+        } 
+        s.push(i);
+    }
+
+    while(!s.empty()){
+        s.pop();
+    }
+
+    // next smaller right:
+    s.push(n-1);
+    nsr[n-1] = n;
+    for(int i=n-2; i>=0; i--){
+        int curr = height[i];
+        while(!s.empty() && curr <= height[s.top()]){
+            s.pop();
+        }
+
+        if(s.empty()){
+            nsr[i] = n;
+        } else {
+            nsr[i] = s.top();
+;       }
+        s.push(i);
+    } 
+
+    int maxArea = 0;
+    for(int i=0; i<n; i++){
+        int ht = height[i];
+        int width = nsr[i] - nsl[i] -1;
+        int area = ht * width;
+
+        maxArea = max(area, maxArea);
+    } 
+    return maxArea;
+}
+
 
 int main(){
     // Push At Bottom of Stack:
@@ -205,6 +261,9 @@ int main(){
     cout << "String has duplicate (): " << isDuplicateParenthesis(str3) << endl;
     cout << "String doesn't have duplicate (): " << isDuplicateParenthesis(str4) << endl;
 
+    // Que: Max. Area of Histogram:
+    vector<int> height = {2, 1, 5, 6, 2, 3};
+    cout << "Max. Area of Histogram: " << maxAreaHistogram(height) << endl;
 
     return 0;
 }
