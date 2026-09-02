@@ -158,7 +158,7 @@ bool isDuplicateParenthesis(string str){
     return false;
 }
 
-// Que: Max Area of Histogram:
+// Que: Max Area of Histogram:  TC = O(N)
 int maxAreaHistogram(vector<int> &height){
     int n = height.size();
     vector<int> nsl(n);   // next smaller left
