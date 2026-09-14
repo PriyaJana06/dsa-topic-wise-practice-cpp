@@ -41,11 +41,11 @@ int heightOfTree(Node* root){
     return currHt;
 }
 
-// Que: Diameter of a Tree:
+// Que: Diameter of a Tree: TC = O(N^2)
 int diam1(Node* root){
     if(root == nullptr) return 0;
 
-    int currDiam = heightOfTree(root->left) + heightOfTree(root->right) + 1;
+    int currDiam = heightOfTree(root->left) + heightOfTree(root->right) + 1;  // O(N)
     int leftDiam = diam1(root->left);
     int rightDiam = diam1(root->right);
 
