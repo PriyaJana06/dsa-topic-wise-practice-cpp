@@ -52,12 +52,27 @@ int diam1(Node* root){
     return max(currDiam, max(leftDiam, rightDiam));
 }
 
+pair<int, int> diam2(Node* root){   // N nodes * O(1) = O(N)
+    if(root == nullptr) return make_pair(0, 0);
+
+    // pair(diameter, height)
+    pair<int, int> leftInfo = diam2(root->left);  // LeftSubtreeDiam, LeftHeight
+    pair<int, int> rightInfo = diam2(root->right);  // RightSubtreeDiam, RightHeight
+
+    int currDiam = leftInfo.second + rightInfo.second + 1;
+    int finalDiam = max(currDiam, max(leftInfo.first, rightInfo.first));
+    int finalHt = max(leftInfo.second, rightInfo.second) + 1;
+
+    return make_pair(finalDiam, finalHt);
+}
+
 int main(){
     // Que: Diameter of a Tree:
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
     Node* root = buildTree(nodes);
 
-    cout << "Diameter of Tree: " << diam1(root) << endl;
+    cout << "Diameter_1 of Tree: " << diam1(root) << endl;
+    cout << "Diameter_2 of Tree: " << diam2(root).first << endl;
 
     return 0;
 }
